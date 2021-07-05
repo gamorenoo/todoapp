@@ -1,0 +1,75 @@
+<br/>
+<br/>
+<br/>
+<div>
+    <span> Tareas del usuario: <b> {{ userName }} </b></span>
+</div>
+<div id="list-task">
+    <div class="widget-container">
+
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <div class="card">
+                    <div class="card-header success-color white-text">
+                        <h5 class="float-left" style="color: red">Tareas Nuevas</h5>
+                        <button class="btn btn-primary float-right" (click)="addTask()"> <b>+</b> </button>
+                    </div>
+                    <div class="card-body overflow-auto" style="height: 400px;">
+                        <dx-list [items]="newTasks" [repaintChangesOnly]="true" keyExpr="id">
+                            <dxo-item-dragging group="tasks" [data]="newTasks" [allowReordering]="true" [onDragStart]="onDragStart" [onAdd]="onAdd" [onRemove]="onRemove">
+                            </dxo-item-dragging>
+                            <div *dxTemplate="let item of 'item'">
+                                <div class="product ">
+                                    <div style="color: red">{{item.title}}</div>
+                                    <small id="emailHelp" class="form-text text-muted">{{item.description}}</small>
+                                </div>
+                            </div>
+                        </dx-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <div class="card">
+                    <h5 class="card-header success-color white-text" style="color: blue">Tareas en progreso</h5>
+                    <div class="card-body overflow-auto" style="height: 400px;">
+                        <dx-list [items]="inProcessTasks" [repaintChangesOnly]="true" keyExpr="id">
+                            <dxo-item-dragging group="tasks" [data]="inProcessTasks" [allowReordering]="true" [onDragStart]="onDragStart" [onAdd]="onAdd" [onRemove]="onRemove">
+                            </dxo-item-dragging>
+                            <div *dxTemplate="let item of 'item'">
+                                <div class="product ">
+                                    <div style="color: blue">{{item.title}}</div>
+                                    <small id="emailHelp" class="form-text text-muted">{{item.description}}</small>
+                                </div>
+                            </div>
+                        </dx-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <div class="card">
+                    <h5 class="card-header success-color white-text" style="color: green">Tareas Terminada</h5>
+                    <div class="card-body overflow-auto" style="height: 400px;">
+                        <dx-list [items]="completedTasks" [repaintChangesOnly]="true" keyExpr="id">
+                            <dxo-item-dragging group="tasks" [data]="completedTasks" [allowReordering]="true" [onDragStart]="onDragStart" [onAdd]="onAdd" [onRemove]="onRemove">
+                            </dxo-item-dragging>
+                            <div *dxTemplate="let item of 'item'">
+                                <div class="product ">
+                                    <div style="color: green">{{item.title}}</div>
+                                    <small id="emailHelp" class="form-text text-muted">{{item.description}}</small>
+                                </div>
+                            </div>
+                        </dx-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-add-task *ngIf="showPopup" [showPopup]="showPopup" (closePopup)="closePopup($event)"></app-add-task>

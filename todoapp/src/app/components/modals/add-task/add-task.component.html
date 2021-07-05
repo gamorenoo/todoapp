@@ -1,0 +1,21 @@
+<dx-popup [elementAttr]="{ id: popUpId }" [fullScreen]="popupFullScreen" title="Agregar Tarea" *ngIf="showPopup" [(visible)]="showPopup" width="70%" [height]="popupHeight" [showTitle]="true" [dragEnabled]="false" [closeOnOutsideClick]="false" [toolbarItems]="toolbarItemsPopup"
+    [showCloseButton]="false">
+    <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view [height]="popupContentHeight">
+            <dx-form id="form" #formTask [elementAttr]="{ id: formId }" [formData]="currentTask" [showColonAfterLabel]="false" [colCount]="2" labelLocation="top" [minColWidth]="300" validationGroup="taskData" visible="true">
+                <dxi-item editorType="dxTextBox" [colSpan]="1" dataField="title" [editorOptions]="{ showClearButton: 'true' }">
+                    <dxo-label text="Título">
+                    </dxo-label>
+                    <dxi-validation-rule type="required" message="Campo requerido">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item editorType="dxTextBox" [colSpan]="1" dataField="description" [editorOptions]="{ showClearButton: 'true' }">
+                    <dxo-label text="Descripción">
+                    </dxo-label>
+                    <dxi-validation-rule type="required" message="Campo requerido">
+                    </dxi-validation-rule>
+                </dxi-item>
+            </dx-form>
+        </dx-scroll-view>
+    </div>
+</dx-popup>
